@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rps.css">
+    <title>RPS GAME</title>
+</head>
+<body style="background-image: url('images/rps_bg4.jpg')">
+    <div id="background">
+    <h1>ROCK PAPER SCISSOR GAME</h1>
+    <div id="content">
+        <h2>
+        &nbspPlayer &nbsp&nbsp&nbsp &nbsp&nbsp<span class="box">Versus </span>&nbsp&nbsp&nbsp&nbsp&nbsp Computer</h2>
+        <div id="image">
+        <input type="image" id="img1" src="images/rock.png" alt="ROCK">   
+        <input type="image" id="img2" src="images/paper.png" alt="PAPER">   
+        <input type="image" id="img3" src="images/scissor.png" alt="SCISSOR">  
+        </div>
+        <div id="computer">
+            
+        </div>
+        <br><br>
+        <div id="result">
+
+        </div>
+        <br><br>
+        <div id="f_result">
+
+        </div>
+       
+    </div>
+    <br>
+    <input id="restart" type="submit" value="Restart">
+   </div>
+
+    <script>
+        let num=3;
+        let player_count=0;
+        let computer_count=0;
+        let draw=0;
+        let output="At the End of the Match, ITS DRAW"
+        
+        document.getElementById("img1").addEventListener("click",first)
+        document.getElementById("img2").addEventListener("click",second)
+        document.getElementById("img3").addEventListener("click",third)
+        document.getElementById("restart").addEventListener("click",refresh)
+        function refresh(){
+            num=3;
+            player_count=0;
+            computer_count=0;
+            draw=0;
+            output=""
+            document.getElementById("computer").innerHTML=""
+            document.getElementById("result").innerHTML=""
+            document.getElementById("f_result").innerHTML=""
+
+        }
+        function first(){
+            let rock=1;
+            let random1=Math.ceil(Math.random()*3);
+            {
+            if(random1===1)
+            document.getElementById("computer").innerHTML="computer chooses ROCK";
+            else if(random1==2)
+            document.getElementById("computer").innerHTML="computer chooses PAPER";
+            else if(random1==3)
+            document.getElementById("computer").innerHTML="computer chooses SCISSOR";
+            }
+            
+            if(random1==1)
+            {
+            document.getElementById("result").innerHTML="Draw"
+            draw++;
+            lastresult();
+            }
+            else if(random1==2)
+            {
+            document.getElementById("result").innerHTML="You Loose"
+            computer_count++;
+            lastresult();
+            }
+            else if(random1==3)
+            {
+            document.getElementById("result").innerHTML="You Won"
+            player_count++;
+            lastresult();
+            }
+            
+            
+            
+         }
+        function second(){
+            let paper=2;
+            let random2=Math.ceil(Math.random()*3);
+            {
+            if(random2===1)
+            document.getElementById("computer").innerHTML="computer chooses ROCK";
+            else if(random2==2)
+            document.getElementById("computer").innerHTML="computer chooses PAPER";
+            else if(random2==3)
+            document.getElementById("computer").innerHTML="computer chooses SCISSOR";
+            }
+            {
+            if(random2==2)
+            {
+            document.getElementById("result").innerHTML="Draw"
+            draw++;
+            lastresult();
+            }
+            else if(random2==3)
+            {
+            document.getElementById("result").innerHTML="You Loose"
+            computer_count++;
+            lastresult();
+            }
+            else if(random2==1)
+            {
+            document.getElementById("result").innerHTML="You Won"
+            player_count++;
+            lastresult();
+            }
+            }
+            
+          }
+
+        function third(){
+            let scissor=3;
+            let random3=Math.ceil(Math.random()*3);
+            {
+            if(random3===1)
+            {
+            document.getElementById("computer").innerHTML="computer chooses ROCK";
+            }
+            else if(random3==2)
+            document.getElementById("computer").innerHTML="computer chooses PAPER";
+            else if(random3==3)
+            document.getElementById("computer").innerHTML="computer chooses SCISSOR";
+            }
+            {
+            if(random3==3)
+            {
+            document.getElementById("result").innerHTML="Draw"
+            draw++;
+            lastresult();
+            }
+            else if(random3==1)
+            {
+            document.getElementById("result").innerHTML="You Loose"
+            computer_count++;
+            lastresult();
+            }
+            else if(random3==2)
+            {
+            document.getElementById("result").innerHTML="You Won"
+            player_count++;
+            lastresult();
+            }
+            }
+            
+          }
+         function lastresult(){
+         if(player_count==2|| (player_count==1 && draw==2))
+        {
+         output="At the End of the Match, YOU WON"
+         document.getElementById("f_result").innerHTML=output
+        }
+        if(computer_count==2||computer_count==1 && draw==2)
+        {
+            output="At the End of the Match, YOU LOOSE"
+            document.getElementById("f_result").innerHTML=output
+        }
+        if(player_count==1 && computer_count==1 && draw==1 || player_count==0 && computer_count==0 && draw==3)
+        document.getElementById("f_result").innerHTML=output;
+         }
+    </script>
+</body>
+</html>
